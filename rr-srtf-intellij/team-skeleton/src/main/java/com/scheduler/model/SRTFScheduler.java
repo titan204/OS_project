@@ -22,14 +22,14 @@ public class SRTFScheduler {
         int prev       = -1;
         int sliceStart = 0;
 
-        // Upper bound for simulation ticks
+        
         int totalBurst = 0;
         for (Process p : procs) totalBurst += p.getBurstTime();
         int limit = procs.get(n - 1).getArrivalTime() + totalBurst + 1;
 
         while (completed < n && time <= limit) {
 
-            // Pick arrived process with shortest remaining time
+          
             int chosen = -1, minRem = Integer.MAX_VALUE;
             for (int i = 0; i < n; i++) {
                 if (!done[i] && procs.get(i).getArrivalTime() <= time) {
@@ -37,7 +37,7 @@ public class SRTFScheduler {
                 }
             }
 
-            // CPU idle
+       
             if (chosen == -1) {
                 if (prev != -1 && sliceStart < time) {
                     gantt.add(new GanttEntry(procs.get(prev).getId(), sliceStart, time));
@@ -51,13 +51,12 @@ public class SRTFScheduler {
 
             Process cp = procs.get(chosen);
 
-            // Record first response
             if (cp.getFirstResponseTime() == -1) {
                 cp.setFirstResponseTime(time);
                 cp.setResponseTime(time - cp.getArrivalTime());
             }
 
-            // Context switch — flush previous Gantt slice
+      
             if (chosen != prev) {
                 if (prev != -1 && sliceStart < time)
                     gantt.add(new GanttEntry(procs.get(prev).getId(), sliceStart, time));
