@@ -12,6 +12,10 @@ public class Process {
     private int responseTime;
     private int firstResponseTime = -1;
 
+    private double avgWT  = 0.0;
+    private double avgTAT = 0.0;
+    private double avgRT  = 0.0;
+
     public Process(String id, int arrivalTime, int burstTime) {
         this.id          = id;
         this.arrivalTime = arrivalTime;
@@ -40,6 +44,14 @@ public class Process {
     public void setFirstResponseTime(int v) {
         if (this.firstResponseTime == -1) this.firstResponseTime = v;
     }
+
+    public void setAvgWT(double v)  { this.avgWT  = v; }
+    public void setAvgTAT(double v) { this.avgTAT = v; }
+    public void setAvgRT(double v)  { this.avgRT  = v; }
+
+    public String getFormattedAvgWT()  { return String.format("%.2f", avgWT);  }
+    public String getFormattedAvgTAT() { return String.format("%.2f", avgTAT); }
+    public String getFormattedAvgRT()  { return String.format("%.2f", avgRT);  }
 
     @Override
     public String toString() {
