@@ -15,11 +15,24 @@ public class SimulationResult {
     public SimulationResult(List<Process> processes,
                             List<GanttEntry> gantt,
                             List<String> readyQueueLog) {
-        // TODO: Implementation will be completed by team member 🧩
+        this.processes     = processes;
+        this.gantt         = gantt;
+        this.readyQueueLog = readyQueueLog;
+        computeAverages();
     }
 
     private void computeAverages() {
-        // TODO: Implementation will be completed by team member 🧩
+        int n = processes.size();
+        if (n == 0) return;
+        double sumWT = 0, sumTAT = 0, sumRT = 0;
+        for (Process p : processes) {
+            sumWT  += p.getWaitingTime();
+            sumTAT += p.getTurnaroundTime();
+            sumRT  += p.getResponseTime();
+        }
+        avgWT  = sumWT  / n;
+        avgTAT = sumTAT / n;
+        avgRT  = sumRT  / n;
     }
 
     public List<Process>    getProcesses()     { return processes; }
