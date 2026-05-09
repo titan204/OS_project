@@ -141,6 +141,7 @@ Member 1 → Member 2 → Member 3 ┐
 ### Tasks:
 
 #### `SRTFScheduler.java`
+
 | Method | Responsibility |
 |--------|---------------|
 | `simulate(List<Process> input)` | Full SRTF (preemptive SJF) implementation: deep-copy processes, sort by arrival, tick-based simulation loop. Each tick: scan all arrived and un-done processes, pick the one with minimum `remaining[]` time. Handle idle CPU (no arrived process). Track context switches (flush Gantt entry when `chosen != prev`). Record `firstResponseTime`. When `remaining[chosen] == 0`: mark done, set `completionTime`, `turnaroundTime`, `waitingTime`, add final Gantt entry. Return `new SimulationResult(procs, gantt, null)` — note: `readyQueueLog` is always `null` for SRTF |
