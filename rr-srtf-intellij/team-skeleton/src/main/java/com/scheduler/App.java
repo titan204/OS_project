@@ -10,10 +10,18 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        // TODO: Implementation will be completed by team member 🧩
+        MainView view = new MainView();
+        new MainController(view);
+
+        Scene scene = new Scene(view, 1150, 740);
+        primaryStage.setTitle("Round Robin vs SRTF — Scheduling Simulator");
+        primaryStage.setScene(scene);
+        primaryStage.setMinWidth(900);
+        primaryStage.setMinHeight(600);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
-        // TODO: Implementation will be completed by team member 🧩
+        launch(args);
     }
 }

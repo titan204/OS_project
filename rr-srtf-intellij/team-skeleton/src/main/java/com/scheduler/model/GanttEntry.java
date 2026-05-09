@@ -7,7 +7,9 @@ public class GanttEntry {
     private final int    end;
 
     public GanttEntry(String processId, int start, int end) {
-        // TODO: Implementation will be completed by team member 🧩
+        this.processId = processId;
+        this.start     = start;
+        this.end       = end;
     }
 
     public String getProcessId() { return processId; }
